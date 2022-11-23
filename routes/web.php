@@ -15,7 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
   Route::get('/', \App\Http\Livewire\Home::class);
-  Route::get('/materisatu/{key}', \App\Http\Livewire\Materisatu\Intro::class);
-  Route::get('/materisatu/{key}/soal', \App\Http\Livewire\Materisatu\Soal::class);
-  Route::get('/materisatu/{key}/hasil', \App\Http\Livewire\Materisatu\Hasil::class);
+  Route::prefix('/materisatu')->group(function () {
+    Route::get('/{key}', \App\Http\Livewire\Materisatu\Intro::class);
+    Route::get('/{key}/soal', \App\Http\Livewire\Materisatu\Soal::class);
+    Route::get('/{key}/hasil', \App\Http\Livewire\Materisatu\Hasil::class);
+  });
+  Route::prefix('/materidua')->group(function () {
+    Route::get('/{key}', \App\Http\Livewire\Materidua\Intro::class);
+    Route::get('/{key}/soal', \App\Http\Livewire\Materidua\Soal::class);
+    Route::get('/{key}/hasil', \App\Http\Livewire\Materidua\Hasil::class);
+  });
 });

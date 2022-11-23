@@ -3,12 +3,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Materi Satu</h1>
+          <h1 class="m-0">Hasil Materi Satu</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item ">Dashboard</li>
-            <li class="breadcrumb-item active"><a href="#">Hasil Materi Satu</a></li>
+            <li class="breadcrumb-item ">Materi Satu</li>
+            <li class="breadcrumb-item active"><a href="#">Hasil</a></li>
           </ol>
         </div>
       </div>
@@ -20,20 +20,17 @@
         <div class="card-body">
           <table class="table table-bordered">
             <tr>
-              <th style="width: 200px">Benar</th>
+              <th style="width: 300px">Kecerdasan Umum (Jumlah Benar)</th>
               <th style="width: 10px">:</th>
               <td class="text-end">{{ number_format($benar) }}</td>
             </tr>
-            <tr>
-              <th style="width: 200px">Salah</th>
-              <th style="width: 10px">:</th>
-              <td class="text-end">{{ number_format($salah) }}</td>
-            </tr>
-            <tr>
-              <th style="width: 200px">Tidak Terjawab</th>
-              <th style="width: 10px">:</th>
-              <td class="text-end">{{ number_format($belum) }}</td>
-            </tr>
+            @foreach ($aspek as $row)
+              <tr>
+                <th>{{ $row['aspek'] }}</th>
+                <th>:</th>
+                <td>{{ number_format($row['jumlah']) }}</td>
+              </tr>
+            @endforeach
           </table>
           <br>
           <div class="text-center">

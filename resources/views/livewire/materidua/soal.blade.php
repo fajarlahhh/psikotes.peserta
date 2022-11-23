@@ -3,12 +3,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Materi Dua</h1>
+          <h1 class="m-0">Soal Materi Dua</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item ">Dashboard</li>
-            <li class="breadcrumb-item active"><a href="#">Materi Dua</a></li>
+            <li class="breadcrumb-item ">Materi Dua</li>
+            <li class="breadcrumb-item active"><a href="#">Soal</a></li>
           </ol>
         </div>
       </div>
@@ -21,23 +21,23 @@
           <div class="col-xl-3">
             <div class="alert alert-primary">
               <div class="row">
-                @foreach ($dataJawabanMateriDua as $index => $row)
+                @foreach ($dataRuangKerjaPesertaJawaban as $index => $row)
                   <div class="col-3 mb-2 ">
                     <button
                       class="btn-xs btn @php if ($row->jawaban != null) {
-                                                  if ($soal == $row->getKey()){
-                                                      echo 'btn-danger';
-                                                  } else { 
-                                                      echo'btn-success';
-                                                  }
-                                              } else {
-                                                  if ($soal == $row->getKey()){
-                                                      echo 'btn-danger';
-                                                  } else { 
-                                                      echo'btn-secondary';
-                                                  }
-                                              } @endphp width-full"
-                      style="width:100%">{{ ++$index }}</button>
+                                                if ($soal == $row->getKey()){
+                                                    echo 'btn-success';
+                                                } else { 
+                                                    echo'btn-danger';
+                                                }
+                                            } else {
+                                                if ($soal == $row->getKey()){
+                                                    echo 'btn-success';
+                                                } else { 
+                                                    echo'btn-secondary';
+                                                }
+                                            } @endphp width-full"
+                      style="width:100%">{{ ++$index }} {{ $row->jawaban }}</button>
                   </div>
                 @endforeach
               </div>
@@ -49,26 +49,39 @@
                 Waktu Tersisa: <label id="countdown"></label>
               </div>
               <div class="card-body">
-                <strong>Soal:</strong>
-                @php
-                  echo $tampil->soal;
-                @endphp
-                <table>
+                <table class="table table-borderless">
                   <tr>
-                    <td><a href="javascript:;" wire:click="submit('a')" class="btn btn-sm btn-info">a. SANGAT TIDAK
-                        SESUAI</a></td>
-                  </tr>
-                  <tr>
-                    <td><a href="javascript:;" wire:click="submit('b')" class="btn btn-sm btn-info">b. TIDAK
-                        SESUAI</a></td>
-                  </tr>
-                  <tr>
-                    <td><a href="javascript:;" wire:click="submit('c')" class="btn btn-sm btn-info">c. SESUAI</a>
+                    <td colspan="5">
+                      <strong>Soal:</strong><br>
+                      @php
+                        echo $tampil->ruangKerjaMateriDua->soal;
+                      @endphp
                     </td>
                   </tr>
                   <tr>
-                    <td><a href="javascript:;" wire:click="submit('d')" class="btn btn-sm btn-info">d. SANGAT
-                        SESUAI</a></td>
+                    <td class="text-center"><a class="btn btn-success width-100" href="javascript:;"
+                        wire:click="submit('SS')">Sangat Setuju</a>
+                    </td>
+                    <td class="text-center"><a class="btn btn-success width-100" href="javascript:;"
+                        wire:click="submit('S')">Setuju</a>
+                    </td>
+                    <td class="text-center"><a class="btn btn-success width-100" href="javascript:;"
+                        wire:click="submit('TS')">Tidak Setuju</a>
+                    </td>
+                    <td class="text-center"><a class="btn btn-success width-100" href="javascript:;"
+                        wire:click="submit('STS')">Sangat Tidak Setuju</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="5">
+                      @if ($dataRuangKerjaPesertaJawaban->count() == $dataRuangKerjaPesertaJawaban->whereNotNull('jawaban')->count())
+                        <div class="alert alert-warning">
+                          Semua soal sudah terjawab, <a href="javascript:;" wire:click="waktu(true)">klik disini</a>
+                          untuk
+                          menyelesaikan tes dan melihat hasil.
+                        </div>
+                      @endif
+                    </td>
                   </tr>
                 </table>
               </div>
@@ -107,6 +120,13 @@
           return 'Sure?';
         }
       };
+
+      function submit() {
+        var jawaban = $('input[name="jawaban"]:checked').val();
+        if (jawaban) {
+          window.livewire.emit('submit', jawaban, now);
+        }
+      }
 
       CountDownTimer();
 

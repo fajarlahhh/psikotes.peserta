@@ -2,28 +2,27 @@
 
 namespace App\Http\Livewire\Materisatu;
 
-use App\Models\JawabanMateriSatu;
+use App\Models\RuangKerjaPesertaJawaban;
 use App\Models\RuangKerjaPesertaWaktu;
 use Livewire\Component;
 
 class Hasil extends Component
 {
-  public $key, $benar = 0, $salah = 0, $belum = 0;
+  public $key, $benar = 0, $aspek = [];
 
   public function mount()
   {
     if (RuangKerjaPesertaWaktu::where('waktu', 0)->count() == 0) {
       return redirect('/materisatu/' . $this->key . '/soal');
     }
-    $dataJawabanMateriSatu = JawabanMateriSatu::where('pengguna_id', auth()->id())->where('ujian_id', $this->key)->leftJoin('materi_satu', 'materi_satu.id', '=', 'jawaban_materi_satu.materi_satu_id')->get();
-    $this->belum = $dataJawabanMateriSatu->whereNull('jawaban')->count();
-    $this->benar = $dataJawabanMateriSatu->where(function ($q) {
-      if ($q->jawaban == $q->kunci) {
-        return true;
-      }
-      return false;
-    })->count();
-    $this->salah = $dataJawabanMateriSatu->count() - $this->benar - $this->belum;
+    $dataJawabanMateriSatu = RuangKerjaPesertaJawaban::with('ruangKerjaMateriSatu')->whereNotNull('ruang_kerja_materi_satu_id')->leftJoin('ruang_kerja_materi_satu', 'ruang_kerja_materi_satu.id', '=', 'ruang_kerja_materi_satu_id')->get();
+    $this->benar = $dataJawabanMateriSatu->where('nilai', 1)->count();
+    foreach ($dataJawabanMateriSatu->groupBy('aspek') as $key => $row) {
+      $this->aspek[] = [
+        'aspek' => $key,
+        'jumlah' => $row->where('nilai', 1)->count(),
+      ];
+    }
   }
 
   public function render()

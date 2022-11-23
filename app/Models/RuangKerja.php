@@ -12,17 +12,17 @@ class RuangKerja extends Model
 
   protected $table = "ruang_kerja";
 
-  public function materiSatu()
+  public function ruangKerjaMateriSatu()
   {
     return $this->hasMany(RuangKerjaMateriSatu::class);
   }
 
-  public function materiDua()
+  public function ruangKerjaMateriDua()
   {
     return $this->hasMany(RuangKerjaMateriDua::class);
   }
 
-  public function materiTiga()
+  public function ruangKerjaMateriTiga()
   {
     return $this->hasMany(RuangKerjaMateriTiga::class);
   }

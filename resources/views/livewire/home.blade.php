@@ -24,13 +24,13 @@
               </div>
               <div class="card-body">
                 @php
-                  $dataWaktu = \App\Models\RuangKerjaPesertaWaktu::where('materi', $data->materi_satu_id)
+                  $dataWaktu = \App\Models\RuangKerjaPesertaWaktu::where('materi', 1)
                       ->orderBy('waktu')
                       ->get();
                   $sisaWaktu = $dataWaktu->count() > 0 ? $dataWaktu->first()->waktu : $data->waktu_materi_satu;
                 @endphp
                 Waktu : {{ $sisaWaktu > 0? \Carbon\CarbonInterval::seconds($sisaWaktu)->cascade()->forHumans(): 0 }}<br>
-                Jumlah Soal : {{ $data->materiSatu->count() }}
+                Jumlah Soal : {{ $data->ruangKerjaMateriSatu->count() }}
                 @if ($sisaWaktu > 0)
                   <a href="/materisatu/{{ $data->getKey() }}" type="button"
                     class="w-100 btn btn-lg btn-outline-info">Buka</a>
@@ -50,13 +50,13 @@
               </div>
               <div class="card-body">
                 @php
-                  $dataWaktu = \App\Models\RuangKerjaPesertaWaktu::where('materi', $data->materi_dua_id)
+                  $dataWaktu = \App\Models\RuangKerjaPesertaWaktu::where('materi', 2)
                       ->orderBy('waktu', 'asc')
                       ->get();
                   $sisaWaktu = $dataWaktu->count() > 0 ? $dataWaktu->first()->waktu : $data->waktu_materi_dua;
                 @endphp
                 Waktu : {{ $sisaWaktu > 0? \Carbon\CarbonInterval::seconds($sisaWaktu)->cascade()->forHumans(): 0 }}<br>
-                Jumlah Soal : {{ $data->materiDua->count() }}
+                Jumlah Soal : {{ $data->ruangKerjaMateriDua->count() }}
                 @if ($sisaWaktu > 0)
                   <a href="/materidua/{{ $data->getKey() }}" type="button"
                     class="w-100 btn btn-lg btn-outline-warning">Buka</a>
@@ -68,7 +68,7 @@
             </div>
           </div>
         @endif
-        @if ($data->materi_tiga_id)
+        {{-- @if ($data->materi_tiga_id)
           <div class="col-lg-4">
             <div class="card card-success">
               <div class="card-header">
@@ -76,14 +76,14 @@
               </div>
               <div class="card-body">
                 @php
-                  $dataWaktu = \App\Models\RuangKerjaPesertaWaktu::where('materi', $data->materi_tiga_id)
+                  $dataWaktu = \App\Models\RuangKerjaPesertaWaktu::where('materi', 1)
                       ->orderBy('waktu')
                       ->get();
                   $sisaWaktu = $dataWaktu->count() > 0 ? $dataWaktu->first()->waktu : $data->waktu_materi_tiga;
                 @endphp
                 Waktu : {{ $sisaWaktu > 0? \Carbon\CarbonInterval::seconds($sisaWaktu)->cascade()->forHumans(): 0 }} /
                 kolom<br>
-                Jumlah Kolom : {{ $data->materiTiga->count() }} Kolom
+                Jumlah Kolom : {{ $data->ruangKerjaMateriTiga->count() }} Kolom
                 @if ($sisaWaktu > 0)
                   <a href="/materitiga/{{ $data->getKey() }}" type="button"
                     class="w-100 btn btn-lg btn-outline-success">Buka</a>
@@ -94,7 +94,7 @@
               </div>
             </div>
           </div>
-        @endif
+        @endif --}}
       </div>
     </div>
   </section>

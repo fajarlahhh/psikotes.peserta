@@ -11,7 +11,7 @@ class RuangKerjaPesertaJawaban extends Model
   use HasFactory;
   protected $table = "ruang_kerja_peserta_jawaban";
   protected $fillable = [
-    'ruang_kerja_peserta_id', 'jawaban', 'ruang_kerja_materi_satu_id', 'benar',
+    'ruang_kerja_peserta_id', 'jawaban', 'ruang_kerja_materi_satu_id', 'nilai',
   ];
 
   public function ruangKerjaPeserta()
@@ -22,6 +22,11 @@ class RuangKerjaPesertaJawaban extends Model
   public function ruangKerjaMateriSatu()
   {
     return $this->belongsTo(RuangKerjaMateriSatu::class);
+  }
+
+  public function ruangKerjaMateriDua()
+  {
+    return $this->belongsTo(RuangKerjaMateriDua::class);
   }
 
   protected static function booted()

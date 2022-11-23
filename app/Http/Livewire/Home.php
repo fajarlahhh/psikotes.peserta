@@ -11,7 +11,7 @@ class Home extends Component
 
   public function mount()
   {
-    $this->data = RuangKerja::with('materiSatu')->with('materiDua')->with('materiTiga')->first();
+    $this->data = RuangKerja::with('ruangKerjaMateriSatu')->with('ruangKerjaMateriDua')->with('ruangKerjaMateriTiga')->first();
   }
 
   public function render()
