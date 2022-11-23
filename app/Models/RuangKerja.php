@@ -2,33 +2,38 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\Peserta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RuangKerja extends Model
 {
-  use HasFactory, SoftDeletes;
+  use HasFactory;
 
   protected $table = "ruang_kerja";
 
   public function materiSatu()
   {
-    return $this->belongsTo(MateriSatu::class);
+    return $this->hasMany(RuangKerjaMateriSatu::class);
   }
 
   public function materiDua()
   {
-    return $this->belongsTo(MateriDua::class);
+    return $this->hasMany(RuangKerjaMateriDua::class);
   }
 
   public function materiTiga()
   {
-    return $this->belongsTo(MateriTiga::class);
+    return $this->hasMany(RuangKerjaMateriTiga::class);
   }
 
-  public function peserta()
+  public function ruangKerjaPeserta()
   {
-    return $this->hasMany(Pengguna::class);
+    return $this->hasMany(RuangKerjaPeserta::class);
+  }
+
+  protected static function booted()
+  {
+    static::addGlobalScope(new Peserta);
   }
 }

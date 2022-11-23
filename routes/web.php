@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware(['auth', 'can:isAdmin'])->group(function () {
-  Route::get('/', \App\Http\Livewire\Backend\Home::class);
-  Route::get('/gantikatasandi', \App\Http\Livewire\Backend\Gantikatasandi::class);
-  Route::get('/soal', \App\Http\Livewire\Backend\Soal\Index::class);
-  Route::get('/petunjuk', \App\Http\Livewire\Backend\Petunjuk::class);
-  Route::prefix('ruangkerja')->group(function () {
-    Route::get('/', \App\Http\Livewire\Backend\Ruangkerja\Index::class);
-    Route::get('/tambah', \App\Http\Livewire\Backend\Ruangkerja\Form::class);
-  });
+Route::middleware(['auth'])->group(function () {
+  Route::get('/', \App\Http\Livewire\Home::class);
+  Route::get('/materisatu/{key}', \App\Http\Livewire\Materisatu\Intro::class);
+  Route::get('/materisatu/{key}/soal', \App\Http\Livewire\Materisatu\Soal::class);
+  Route::get('/materisatu/{key}/hasil', \App\Http\Livewire\Materisatu\Hasil::class);
 });

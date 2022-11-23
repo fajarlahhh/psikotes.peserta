@@ -41,10 +41,8 @@
           <div class="info">
             <a href="#" class="d-block">
               {{ auth()->user()->nama }}
-              @if (!auth()->user()->can('isAdmin'))
-                <br>
-                No. Peserta : {{ auth()->user()->no_peserta }}
-              @endif
+              <br>
+              No. Peserta : {{ auth()->user()->nomor }}
             </a>
           </div>
         </div>
@@ -52,66 +50,22 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
             data-accordion="false">
-            @if (auth()->user()->can('isAdmin'))
-              <li class="nav-item">
-                <a href="/admin" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Dashboard
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/admin/petunjuk" class="nav-link btn-logout">
-                  <i class="nav-icon fas fa-ruler"></i>
-                  <p>
-                    Petunjuk Soal
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/admin/ruangkerja" class="nav-link btn-logout">
-                  <i class="nav-icon fas fa-edit"></i>
-                  <p>
-                    Ruang Kerja
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/admin/soal" class="nav-link btn-logout">
-                  <i class="nav-icon fas fa-file-alt"></i>
-                  <p>
-                    Soal
-                  </p>
-                </a>
-              </li>
-              <hr>
-              <li class="nav-item">
-                <button href="javascript:;" class="nav-link btn-logout btn btn-warning">
-                  <i class="nav-icon fas fa-sign-out-alt"></i>
-                  <p>
-                    Logout
-                  </p>
-                </button>
-              </li>
-            @else
-              <li class="nav-item">
-                <a href="/" class="nav-link">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Dashboard
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="javascript:;" class="nav-link btn-logout">
-                  <i class="nav-icon fas fa-sign-out-alt"></i>
-                  <p>
-                    Logout
-                  </p>
-                </a>
-              </li>
-            @endif
+            <li class="nav-item">
+              <a href="/" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="javascript:;" class="nav-link btn-logout">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Logout
+                </p>
+              </a>
+            </li>
           </ul>
         </nav>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -9,4 +9,5 @@ class MateriSatuDetail extends Model
 {
   use HasFactory;
   protected $table = "materi_satu_detail";
+  protected $fillable = ['materi_dua_id', 'soal', 'kunci', 'aspek'];
 }
