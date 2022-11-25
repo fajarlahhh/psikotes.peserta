@@ -68,7 +68,7 @@
             </div>
           </div>
         @endif
-        {{-- @if ($data->materi_tiga_id)
+        @if ($data->materi_tiga_id)
           <div class="col-lg-4">
             <div class="card card-success">
               <div class="card-header">
@@ -94,7 +94,7 @@
               </div>
             </div>
           </div>
-        @endif --}}
+        @endif
       </div>
     </div>
   </section>

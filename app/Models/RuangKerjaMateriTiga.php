@@ -9,4 +9,9 @@ class RuangKerjaMateriTiga extends Model
 {
   use HasFactory;
   protected $table = "ruang_kerja_materi_tiga";
+
+  public function ruangKerjaPesertaJawaban()
+  {
+    return $this->hasOne(RuangKerjaPesertaJawaban::class);
+  }
 }

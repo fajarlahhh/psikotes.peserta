@@ -25,4 +25,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/{key}/soal', \App\Http\Livewire\Materidua\Soal::class);
     Route::get('/{key}/hasil', \App\Http\Livewire\Materidua\Hasil::class);
   });
+  Route::prefix('/materitiga')->group(function () {
+    Route::get('/{key}', \App\Http\Livewire\Materitiga\Intro::class);
+    Route::get('/{key}/soal', \App\Http\Livewire\Materitiga\Soal::class);
+    Route::get('/{key}/hasil', \App\Http\Livewire\Materitiga\Hasil::class);
+  });
 });

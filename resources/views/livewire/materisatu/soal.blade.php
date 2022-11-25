@@ -37,7 +37,7 @@
                                                     echo'btn-secondary';
                                                 }
                                             } @endphp width-full"
-                      style="width:100%">{{ ++$index }} {{ $row->jawaban }}</button>
+                      style="width:100%">{{ ++$index }} {{ strtoupper($row->jawaban) }}</button>
                   </div>
                 @endforeach
               </div>
@@ -51,7 +51,7 @@
               <div class="card-body">
                 <table class="table table-borderless">
                   <tr>
-                    <td colspan="5">
+                    <td colspan="5" style="height: 400px">
                       <strong>Soal:</strong><br>
                       @php
                         echo $tampil->ruangKerjaMateriSatu->soal;
@@ -59,23 +59,23 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="text-center"><a
+                    <td class="text-center"><a style="width: 100%"
                         class="btn {{ $tampil->jawaban == 'A' ? 'btn-danger' : 'btn-success' }} width-100"
                         href="javascript:;" wire:click="submit('A')">Jawab A</a>
                     </td>
-                    <td class="text-center"><a
+                    <td class="text-center"><a style="width: 100%"
                         class="btn {{ $tampil->jawaban == 'B' ? 'btn-danger' : 'btn-success' }} width-100"
                         href="javascript:;" wire:click="submit('B')">Jawab B</a>
                     </td>
-                    <td class="text-center"><a
+                    <td class="text-center"><a style="width: 100%"
                         class="btn {{ $tampil->jawaban == 'C' ? 'btn-danger' : 'btn-success' }} width-100"
                         href="javascript:;" wire:click="submit('C')">Jawab C</a>
                     </td>
-                    <td class="text-center"><a
+                    <td class="text-center"><a style="width: 100%"
                         class="btn {{ $tampil->jawaban == 'D' ? 'btn-danger' : 'btn-success' }} width-100"
                         href="javascript:;" wire:click="submit('D')">Jawab D</a>
                     </td>
-                    <td class="text-center"><a
+                    <td class="text-center"><a style="width: 100%"
                         class="btn {{ $tampil->jawaban == 'E' ? 'btn-danger' : 'btn-success' }} width-100"
                         href="javascript:;" wire:click="submit('E')">Jawab E</a>
                     </td>

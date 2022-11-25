@@ -3,11 +3,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Soal Materi Dua</h1>
+          <h1 class="m-0">Soal Materi Tiga</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item ">Materi Dua</li>
+            <li class="breadcrumb-item ">Materi Tiga</li>
             <li class="breadcrumb-item active"><a href="#">Soal</a></li>
           </ol>
         </div>
@@ -45,36 +45,78 @@
           </div>
           <div class="col-xl-9">
             <div class="card">
-              <div class="card-header text-right" wire:ignore>
-                Waktu Tersisa: <label id="countdown"></label>
+              <div class="card-header ">
+                <h3 class="card-title">
+                  <strong>Kolom {{ $kolom }}</strong>
+                </h3>
+                <div class="card-tools" wire:ignore>
+                  Waktu Tersisa: <label id="countdown"></label>
+                </div>
               </div>
               <div class="card-body">
-                <table class="table table-borderless">
+                <table class="table table-bordered">
                   <tr>
-                    <td colspan="5"style="height: 400px">
-                      <strong>Soal:</strong><br>
-                      @php
-                        echo $tampil->ruangKerjaMateriDua->soal;
-                      @endphp
+                    <td colspan="4">
+                      <strong>Soal:</strong>
+                    </td>
+                  <tr>
+                  <tr>
+                    <td class="text-center">
+                      <h2>{{ $tampil->ruangKerjaMateriTiga->a }}</h2>
+                    </td>
+                    <td class="text-center">
+                      <h2>{{ $tampil->ruangKerjaMateriTiga->b }}</h2>
+                    </td>
+                    <td class="text-center">
+                      <h2>{{ $tampil->ruangKerjaMateriTiga->c }}</h2>
+                    </td>
+                    <td class="text-center">
+                      <h2>{{ $tampil->ruangKerjaMateriTiga->d }}</h2>
                     </td>
                   </tr>
+                </table>
+                <table class="table table-borderless">
                   <tr>
-                    <td class="text-center"><a style="width: 100%" class="btn btn-success width-100" href="javascript:;"
-                        wire:click="submit('SS')">Sangat Setuju</a>
+                    <td colspan="5">
+                      <strong>Jawaban:</strong>
                     </td>
-                    <td class="text-center"><a style="width: 100%" class="btn btn-success width-100" href="javascript:;"
-                        wire:click="submit('S')">Setuju</a>
+                  <tr>
+                  </tr>
+                  @php
+                    $jawaban = json_decode($tampil->ruangKerjaMateriTiga->soal);
+                  @endphp
+                  @foreach ($jawaban as $index => $row)
+                    <td class="text-center">
+                      <button class="btn btn-success" style="width: 100%"
+                        wire:click="submit({{ $index }})">{{ $row }}</button><br>
+                      @switch($index)
+                        @case(0)
+                          {{ 'a' }}
+                        @break
+
+                        @case(1)
+                          {{ 'b' }}
+                        @break
+
+                        @case(2)
+                          {{ 'c' }}
+                        @break
+
+                        @case(3)
+                          {{ 'd' }}
+                        @break
+
+                        @case(4)
+                          {{ 'e' }}
+                        @break
+                      @endswitch
                     </td>
-                    <td class="text-center"><a style="width: 100%" class="btn btn-success width-100" href="javascript:;"
-                        wire:click="submit('TS')">Tidak Setuju</a>
-                    </td>
-                    <td class="text-center"><a style="width: 100%" class="btn btn-success width-100" href="javascript:;"
-                        wire:click="submit('STS')">Sangat Tidak Setuju</a>
-                    </td>
+                  @endforeach
                   </tr>
                   <tr>
                     <td colspan="5">
-                      @if ($dataRuangKerjaPesertaJawaban->count() == $dataRuangKerjaPesertaJawaban->whereNotNull('jawaban')->count())
+                      @if ($dataRuangKerjaPesertaJawabanAll->count() ==
+                          $dataRuangKerjaPesertaJawabanAll->whereNotNull('jawaban')->count())
                         <div class="alert alert-warning">
                           Semua soal sudah terjawab, <a href="javascript:;" wire:click="waktu(true)">klik disini</a>
                           untuk
@@ -90,13 +132,13 @@
         @else
           <div class="col-lg-12 text-center">
             <h5 class="text-danger">Waktu Anda Sudah Habis</h5><br>
-            <a href="/materidua/{{ $key }}/hasil" class="btn btn-primary">Klik Hasil</a>
+            <a href="/materitiga/{{ $key }}/hasil" class="btn btn-primary">Klik Hasil</a>
           </div>
         @endif
       </div>
     </div>
   </section>
-  @push('scripts')
+  {{-- @push('scripts')
     @if ($waktu > 0)
       <script type="text/javascript"></script>
     @endif
@@ -162,5 +204,5 @@
         timer = setInterval(showRemaining, 1000);
       }
     </script>
-  @endpush
+  @endpush --}}
 </div>

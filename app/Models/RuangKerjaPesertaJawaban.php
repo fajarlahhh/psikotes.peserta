@@ -29,6 +29,11 @@ class RuangKerjaPesertaJawaban extends Model
     return $this->belongsTo(RuangKerjaMateriDua::class);
   }
 
+  public function ruangKerjaMateriTiga()
+  {
+    return $this->belongsTo(RuangKerjaMateriTiga::class);
+  }
+
   protected static function booted()
   {
     static::addGlobalScope(new Peserta);
