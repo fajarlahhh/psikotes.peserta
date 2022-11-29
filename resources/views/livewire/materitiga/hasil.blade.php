@@ -20,17 +20,17 @@
         <div class="card-body">
           <table class="table table-bordered">
             <tr>
-              <th style="width: 300px">Kecerdasan Umum (Jumlah Benar)</th>
-              <th style="width: 10px">:</th>
-              <td class="text-end">{{ number_format($benar) }}</td>
+              <th></th>
+              @for ($i = 1; $i < 11; $i++)
+                <th>Kolom {{ $i }}</th>
+              @endfor
             </tr>
-            @foreach ($aspek as $row)
-              <tr>
-                <th>{{ $row['aspek'] }}</th>
-                <th>:</th>
-                <td>{{ number_format($row['jumlah']) }}</td>
-              </tr>
-            @endforeach
+            <tr>
+              <th>JUMlAH BENAR</th>
+              @for ($i = 1; $i < 11; $i++)
+                <td> {{ $data->where('kolom', $i)->first()->nilai }}</td>
+              @endfor
+            </tr>
           </table>
           <br>
           <div class="text-center">

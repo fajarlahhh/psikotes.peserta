@@ -14,4 +14,9 @@ class RuangKerjaMateriTiga extends Model
   {
     return $this->hasOne(RuangKerjaPesertaJawaban::class);
   }
+
+  public function ruangKerja()
+  {
+    return $this->belongsTo(RuangKerja::class);
+  }
 }

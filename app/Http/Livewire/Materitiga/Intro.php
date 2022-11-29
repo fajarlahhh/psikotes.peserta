@@ -16,8 +16,8 @@ class Intro extends Component
 
   public function mount($key)
   {
-    if (RuangKerjaPesertaWaktu::where('materi', 1)->count() > 0) {
-      return redirect('/materitiga/' . $this->key . '/soal');
+    if (RuangKerjaPesertaWaktu::where('materi', 'like', '3%')->count() > 0) {
+      return redirect('/materitiga/' . $this->key . '/1');
     }
     $this->key = $key;
   }
@@ -35,15 +35,83 @@ class Intro extends Component
             'updated_at' => now(),
           ];
         })->toArray();
+        $dataWaktu = [
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 31,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 32,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 33,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 34,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 35,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 36,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 37,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 38,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 39,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+          [
+            'ruang_kerja_peserta_id' => auth()->id(),
+            'waktu' => $data->waktu_materi_tiga,
+            'materi' => 310,
+            'created_at' => now(),
+            'updated_at' => now(),
+          ],
+        ];
         RuangKerjaPesertaJawaban::insert($dataSoal);
-        $waktu = new RuangKerjaPesertaWaktu();
-        $waktu->ruang_kerja_peserta_id = auth()->id();
-        $waktu->waktu = $data->waktu_materi_tiga;
-        $waktu->materi = 1;
-        $waktu->save();
+        RuangKerjaPesertaWaktu::insert($dataWaktu);
       });
     }
-    return redirect('/materitiga/' . $this->key . '/soal');
+    return redirect('/materitiga/' . $this->key . '/1');
   }
 
   public function render()

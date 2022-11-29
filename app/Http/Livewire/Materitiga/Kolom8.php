@@ -9,39 +9,36 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class Soal extends Component
+class Kolom8 extends Component
 {
-  public $kolom = 1, $dataSoal, $dataRuangKerja, $soal, $key, $dataRuangKerjaPesertaJawaban, $dataRuangKerjaPesertaJawabanAll, $waktu, $now, $end, $tampil;
+  public $dataSoal, $dataRuangKerja, $soal, $key, $dataRuangKerjaPesertaJawaban, $waktu, $now, $end, $tampil;
 
   public function waktu($selesai = false)
   {
     $now = Carbon::now();
     $data = new RuangKerjaPesertaWaktu();
     $data->ruang_kerja_peserta_id = auth()->id();
-    $data->materi = '3' . $this->kolom;
+    $data->materi = 38;
     $data->waktu = ($selesai == true ? 0 : $this->end->diffInSeconds($now));
     $data->save();
 
     if ($selesai == true) {
-      return redirect('/materitiga/' . $this->key . '/hasil');
+      return redirect('/materitiga/' . $this->key . '/9');
     }
   }
 
   public function mount($key)
   {
     $this->key = $key;
-    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereNull('jawaban')->get();
 
-    if ($this->dataRuangKerjaPesertaJawaban->first()->kolom != $this->kolom) {
-      $this->kolom = $this->tampil->ruangKerjaMateriTiga->kolom;
-    }
-    if (RuangKerjaPesertaWaktu::where('waktu', 0)->where('materi', '3')->count() > 0) {
-      return redirect('/materitiga/' . $this->key . '/hasil');
+    if (RuangKerjaPesertaWaktu::where('waktu', 0)->where('materi', 38)->count() > 0) {
+      return redirect('/materitiga/' . $this->key . '/9');
     }
 
     $this->dataRuangKerja = RuangKerja::findOrFail($this->key);
-    $this->waktu = RuangKerjaPesertaWaktu::where('materi', '3')->count() == 0 ? $this->dataRuangKerja->waktu_materi_tiga : RuangKerjaPesertaWaktu::where('materi', 1)->orderBy('waktu')->first()->waktu;
+    $this->waktu = RuangKerjaPesertaWaktu::where('materi', 38)->count() == 0 ? $this->dataRuangKerja->waktu_materi_tiga : RuangKerjaPesertaWaktu::where('materi', 38)->orderBy('waktu')->first()->waktu;
 
+    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', 8))->whereNotNull('ruang_kerja_materi_tiga_id')->get();
     $this->soal = $this->dataRuangKerjaPesertaJawaban->first()->id;
     $this->now = now();
     $this->end = Carbon::now()->addSeconds($this->waktu);
@@ -80,8 +77,10 @@ class Soal extends Component
         ]);
         $this->waktu();
       });
-      if ($this->soal < $this->dataRuangKerjaPesertaJawabanAll->sortByDesc('id')->first()->id) {
+      if ($this->soal < $this->dataRuangKerjaPesertaJawaban->sortByDesc('id')->first()->id) {
         $this->soal++;
+      } else {
+        return redirect('/materitiga/' . $this->key . '/9');
       }
     }
   }
@@ -89,12 +88,7 @@ class Soal extends Component
   public function render()
   {
     $this->emit('reinit');
-    $this->dataRuangKerjaPesertaJawabanAll = RuangKerjaPesertaJawaban::all();
     $this->tampil = RuangKerjaPesertaJawaban::findOrFail($this->soal);
-    if ($this->tampil->ruangKerjaMateriTiga->kolom != $this->kolom) {
-      $this->kolom = $this->tampil->ruangKerjaMateriTiga->kolom;
-    }
-    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', $this->kolom))->get();
-    return view('livewire.materitiga.soal');
+    return view('livewire.materitiga.kolom8');
   }
 }

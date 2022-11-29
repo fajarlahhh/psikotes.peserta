@@ -20,7 +20,7 @@
         <div class="card">
           <div class="card-header ">
             <h3 class="card-title">
-              <strong>Kolom {{ $kolom }}</strong>
+              <strong>Kolom 4</strong>
             </h3>
             <div class="card-tools" wire:ignore>
               Waktu Tersisa: <label id="countdown"></label>
@@ -91,12 +91,13 @@
           </div>
         </div>
       @else
-        <h5 class="text-danger">Waktu Anda Sudah Habis</h5><br>
-        <a href="/materitiga/{{ $key }}/hasil" class="btn btn-primary">Klik Hasil</a>
+        @php
+          redirect('/materitiga/' . $key . '/5');
+        @endphp
       @endif
     </div>
   </section>
-  {{-- @push('scripts')
+  @push('scripts')
     @if ($waktu > 0)
       <script type="text/javascript"></script>
     @endif
@@ -108,18 +109,18 @@
         $('input[name="jawaban"]').attr('checked', false);
       });
 
-      window.onbeforeunload = function(e) {
-        window.livewire.emit('waktu');
-        if (selesai == false) {
-          e = e || window.event;
+      //   window.onbeforeunload = function(e) {
+      //     window.livewire.emit('waktu');
+      //     if (selesai == false) {
+      //       e = e || window.event;
 
-          if (e) {
-            e.returnValue = 'Sure?';
-          }
+      //       if (e) {
+      //         e.returnValue = 'Sure?';
+      //       }
 
-          return 'Sure?';
-        }
-      };
+      //       return 'Sure?';
+      //     }
+      //   };
 
       function submit() {
         var jawaban = $('input[name="jawaban"]:checked').val();
@@ -149,6 +150,7 @@
             clearInterval(timer);
             return;
           }
+          window.livewire.emit('waktu');
 
           var days = Math.floor(distance / _day);
           var hours = Math.floor((distance % _day) / _hour);
@@ -162,5 +164,5 @@
         timer = setInterval(showRemaining, 1000);
       }
     </script>
-  @endpush --}}
+  @endpush
 </div>
