@@ -62,15 +62,15 @@
                 <h4 class="card-title">Materi Tiga</h4>
               </div>
               <div class="card-body">
-                <table class="table table-borderless">
+                <table class="table table-bordered p-0">
                   <tr>
-                    <th>Kolom</th>
-                    <th>Sisa Waktu</th>
-                    <th>Sisa Soal</th>
+                    <th class=" p-1">Kolom</th>
+                    <th class=" p-1">Sisa Waktu</th>
+                    <th class=" p-1">Sisa Soal</th>
                   </tr>
                   <tr>
-                    <td>1</td>
-                    <td class="text-right">
+                    <td class=" p-1">1</td>
+                    <td class="text-right p-1 p-1">
                       @php
                         $dataWaktu1 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '31')
                             ->orderBy('waktu', 'asc')
@@ -79,13 +79,13 @@
                       @endphp
                       {{ $sisaWaktu1 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu1)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class=" p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '1'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>2</td>
-                    <td class="text-right">
+                    <td class="p-1">2</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu2 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '32')
                             ->orderBy('waktu', 'asc')
@@ -94,13 +94,13 @@
                       @endphp
                       {{ $sisaWaktu2 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu2)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '2'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>3</td>
-                    <td class="text-right">
+                    <td class="p-1">3</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu3 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '33')
                             ->orderBy('waktu', 'asc')
@@ -109,13 +109,13 @@
                       @endphp
                       {{ $sisaWaktu3 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu3)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '3'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>4</td>
-                    <td class="text-right">
+                    <td class="p-1">4</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu4 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '34')
                             ->orderBy('waktu', 'asc')
@@ -124,13 +124,13 @@
                       @endphp
                       {{ $sisaWaktu4 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu4)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '4'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>5</td>
-                    <td class="text-right">
+                    <td class="p-1">5</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu5 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '35')
                             ->orderBy('waktu', 'asc')
@@ -139,13 +139,13 @@
                       @endphp
                       {{ $sisaWaktu5 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu5)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '5'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>6</td>
-                    <td class="text-right">
+                    <td class="p-1">6</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu6 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '36')
                             ->orderBy('waktu', 'asc')
@@ -154,13 +154,13 @@
                       @endphp
                       {{ $sisaWaktu6 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu6)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '6'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>7</td>
-                    <td class="text-right">
+                    <td class="p-1">7</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu7 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '37')
                             ->orderBy('waktu', 'asc')
@@ -169,13 +169,13 @@
                       @endphp
                       {{ $sisaWaktu7 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu7)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '7'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>8</td>
-                    <td class="text-right">
+                    <td class="p-1">8</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu8 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '38')
                             ->orderBy('waktu', 'asc')
@@ -184,13 +184,13 @@
                       @endphp
                       {{ $sisaWaktu8 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu8)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '8'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>9</td>
-                    <td class="text-right">
+                    <td class="p-1">9</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu9 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '39')
                             ->orderBy('waktu', 'asc')
@@ -199,13 +199,13 @@
                       @endphp
                       {{ $sisaWaktu9 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu9)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '9'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
                   <tr>
-                    <td>9</td>
-                    <td class="text-right">
+                    <td class="p-1">9</td>
+                    <td class="text-right p-1">
                       @php
                         $dataWaktu10 = \App\Models\RuangKerjaPesertaWaktu::where('materi', '39')
                             ->orderBy('waktu', 'asc')
@@ -214,7 +214,7 @@
                       @endphp
                       {{ $sisaWaktu10 > 0 ? \Carbon\CarbonInterval::seconds($sisaWaktu10)->cascade() : 0 }}<br>
                     </td>
-                    <td>
+                    <td class="p-1">
                       {{ \App\Models\RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_tiga_id')->whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', '9'))->whereNull('jawaban')->count() }}
                     </td>
                   </tr>
