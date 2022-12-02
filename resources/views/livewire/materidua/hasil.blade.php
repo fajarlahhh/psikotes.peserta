@@ -10,10 +10,13 @@
       <div class="card">
         <div class="card-body">
           <table class="table table-bordered">
+            <tr>
+              <th>Aspek</th>
+              <th>Nilai</th>
+            </tr>
             @foreach ($aspek as $row)
               <tr>
-                <th>{{ $row['aspek'] }}</th>
-                <th>:</th>
+                <td>{{ $row['aspek'] }}</td>
                 <td>{{ number_format($row['jumlah']) }}</td>
               </tr>
             @endforeach
@@ -26,4 +29,5 @@
       </div>
     </div>
   </div>
+  <br>
 </div>

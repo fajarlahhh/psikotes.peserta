@@ -11,14 +11,16 @@
         <div class="card-body">
           <table class="table table-bordered">
             <tr>
-              <th style="width: 300px">Kecerdasan Umum (Jumlah Benar)</th>
-              <th style="width: 10px">:</th>
+              <th>Aspek</th>
+              <th>Nilai</th>
+            </tr>
+            <tr>
+              <td style="width: 300px">Kecerdasan Umum (Jumlah Benar)</td>
               <td class="text-end">{{ number_format($benar) }}</td>
             </tr>
             @foreach ($aspek as $row)
               <tr>
-                <th>{{ $row['aspek'] }}</th>
-                <th>:</th>
+                <td>{{ $row['aspek'] }}</td>
                 <td>{{ number_format($row['jumlah']) }}</td>
               </tr>
             @endforeach
@@ -31,4 +33,5 @@
       </div>
     </div>
   </div>
+  <br>
 </div>
