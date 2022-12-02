@@ -20,75 +20,65 @@
   @livewireStyles
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+<body class="hold-transition layout-top-nav">
   <div class="wrapper">
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-      </ul>
-    </nav>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <a href="index3.html" class="brand-link">
-        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-          class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Ujian</span>
-      </a>
 
-      <div class="sidebar">
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="info">
-            <a href="#" class="d-block">
-              {{ auth()->user()->nama }}
-              <br>
-              No. Peserta : {{ auth()->user()->nomor }}
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+      <div class="container">
+        <a href="/" class="navbar-brand">
+          <img src="{{ asset('dist/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+          <span class="brand-text font-weight-light"><strong>pintar</strong>psi.com</span>
+        </a>
+
+        <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <!-- Right navbar links -->
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+          <!-- Messages Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              {{ strtoupper(auth()->user()->nama) }}
+              <i class="fas fa-angle-down"></i>
             </a>
-          </div>
-        </div>
-
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-            data-accordion="false">
-            <li class="nav-item">
-              <a href="/" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                </p>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right text-center">
+              <a href="#" class="dropdown-item btn-logout">
+                <!-- Message Start -->
+                <div class="media">
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      <i class="nav-icon fas fa-sign-out-alt"></i>
+                      Logout
+                    </h3>
+                  </div>
+                </div>
+                <!-- Message End -->
               </a>
-            </li>
-            <li class="nav-item">
-              <a href="javascript:;" class="nav-link btn-logout">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-                <p>
-                  Logout
-                </p>
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        </form>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
-
-    <!-- Content Wrapper. Contains page content -->
+          </li>
+        </ul>
+    </nav>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    </form>
     <div class="content-wrapper">
       {{ $slot }}
     </div>
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-      All rights reserved.
+  </div>
+  <!-- /.navbar -->
+  <!-- Content Wrapper. Contains page content -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2022
       <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 3.2.0
+        <b>V.</b> 1
       </div>
-    </footer>
+  </footer>
 
-    <aside class="control-sidebar control-sidebar-dark">
-    </aside>
+  <aside class="control-sidebar control-sidebar-dark">
+  </aside>
   </div>
   @livewireScripts
   <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

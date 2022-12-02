@@ -17,7 +17,7 @@ class Intro extends Component
   public function mount($key)
   {
     if (RuangKerjaPesertaWaktu::where('materi', 'like', '3%')->count() > 0) {
-      return redirect('/materitiga/' . $this->key . '/1');
+      return redirect('/materitiga/' . $this->key . '/kolom/1');
     }
     $this->key = $key;
   }
@@ -111,13 +111,13 @@ class Intro extends Component
         RuangKerjaPesertaWaktu::insert($dataWaktu);
       });
     }
-    return redirect('/materitiga/' . $this->key . '/1');
+    return redirect('/materitiga/' . $this->key . '/kolom/1');
   }
 
   public function render()
   {
     return view('livewire.materitiga.intro', [
-      'data' => Petunjuk::where('materi', 1)->first(),
+      'data' => Petunjuk::where('materi', 3)->first(),
     ]);
   }
 }

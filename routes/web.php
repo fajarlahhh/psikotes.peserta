@@ -27,16 +27,7 @@ Route::middleware(['auth'])->group(function () {
   });
   Route::prefix('/materitiga')->group(function () {
     Route::get('/{key}', \App\Http\Livewire\Materitiga\Intro::class);
-    Route::get('/{key}/1', \App\Http\Livewire\Materitiga\Kolom1::class);
-    Route::get('/{key}/2', \App\Http\Livewire\Materitiga\Kolom2::class);
-    Route::get('/{key}/3', \App\Http\Livewire\Materitiga\Kolom3::class);
-    Route::get('/{key}/4', \App\Http\Livewire\Materitiga\Kolom4::class);
-    Route::get('/{key}/5', \App\Http\Livewire\Materitiga\Kolom5::class);
-    Route::get('/{key}/6', \App\Http\Livewire\Materitiga\Kolom6::class);
-    Route::get('/{key}/7', \App\Http\Livewire\Materitiga\Kolom7::class);
-    Route::get('/{key}/8', \App\Http\Livewire\Materitiga\Kolom8::class);
-    Route::get('/{key}/9', \App\Http\Livewire\Materitiga\Kolom9::class);
-    Route::get('/{key}/10', \App\Http\Livewire\Materitiga\Kolom10::class);
+    Route::get('/{key}/kolom/{kolom}', \App\Http\Livewire\Materitiga\Soal::class);
     Route::get('/{key}/hasil', \App\Http\Livewire\Materitiga\Hasil::class);
   });
 });

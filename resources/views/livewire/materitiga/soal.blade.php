@@ -1,102 +1,148 @@
 <div>
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">Soal Materi Tiga</h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item ">Materi Tiga</li>
-            <li class="breadcrumb-item active"><a href="#">Soal</a></li>
-          </ol>
-        </div>
+  <div class="content">
+    <br>
+    <div class="container">
+      <div class="row">
+        @if ($waktu > 0)
+          <div class="col-xl-9">
+            <div class="card">
+              <div class="card-body">
+                <h4>Materi Tiga</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3">
+            <div class="text-center" wire:ignore>
+              <small>Sisa Waktu</small>
+              <h1><label id="countdown" class="text-blue">00:00:00</label></h1>
+            </div>
+          </div>
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-9">
+                    <strong>Petunjuk</strong>
+                    <table class="table table-bordered">
+                      <tr>
+                        <td colspan="5" class="text-center"><strong>KOLOM {{ $kolom }}</strong></td>
+                      </tr>
+                      @php
+                        $jawaban = json_decode($tampil->ruangKerjaMateriTiga->soal);
+                      @endphp
+                      <tr>
+                        @foreach ($jawaban as $index => $row)
+                          <td class="text-center">
+                            <h1>{{ $row }}</h1>
+                          </td>
+                        @endforeach
+                      </tr>
+                      <tr>
+                        @foreach ($jawaban as $index => $row)
+                          <td class="text-center">
+                            @switch($index)
+                              @case(0)
+                                @php $pilihan ='a' @endphp
+                              @break
+
+                              @case(1)
+                                @php $pilihan ='b' @endphp
+                              @break
+
+                              @case(2)
+                                @php $pilihan ='c' @endphp
+                              @break
+
+                              @case(3)
+                                @php $pilihan ='d' @endphp
+                              @break
+
+                              @case(4)
+                                @php $pilihan ='e' @endphp
+                              @break
+                            @endswitch
+                            {{ $pilihan }}
+                          </td>
+                        @endforeach
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="col-md-3">
+                  </div>
+                  <div class="col-md-4">
+                    <table class="table table-bordered">
+                      <tr>
+                        <td colspan="4">
+                          <strong>Persoalan:</strong>
+                        </td>
+                      <tr>
+                      <tr>
+                        <td class="text-center">
+                          <h2>{{ $tampil->ruangKerjaMateriTiga->a }}</h2>
+                        </td>
+                        <td class="text-center">
+                          <h2>{{ $tampil->ruangKerjaMateriTiga->b }}</h2>
+                        </td>
+                        <td class="text-center">
+                          <h2>{{ $tampil->ruangKerjaMateriTiga->c }}</h2>
+                        </td>
+                        <td class="text-center">
+                          <h2>{{ $tampil->ruangKerjaMateriTiga->d }}</h2>
+                        </td>
+                      </tr>
+                    </table>
+                    <table class="table table-borderless">
+                      <tr>
+                        @php
+                          $jawaban = json_decode($tampil->ruangKerjaMateriTiga->soal);
+                        @endphp
+                        @foreach ($jawaban as $index => $row)
+                          <td class="text-center">
+                            @switch($index)
+                              @case(0)
+                                @php $pilihan ='a' @endphp
+                              @break
+
+                              @case(1)
+                                @php $pilihan ='b' @endphp
+                              @break
+
+                              @case(2)
+                                @php $pilihan ='c' @endphp
+                              @break
+
+                              @case(3)
+                                @php $pilihan ='d' @endphp
+                              @break
+
+                              @case(4)
+                                @php $pilihan ='e' @endphp
+                              @break
+                            @endswitch
+                            <button class="btn btn-success" style="width: 100%"
+                              wire:click="submit('{{ $pilihan }}')">
+                              {{ $pilihan }}
+                            </button>
+                          </td>
+                        @endforeach
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="col-md-8">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        @else
+          @php
+            redirect('/materitiga/' . $key . '/kolom/' . ($kolom + 1));
+          @endphp
+        @endif
       </div>
     </div>
   </div>
-  <section class="content">
-    <div class="container-fluid">
-      @if ($waktu > 0)
-        <div class="card">
-          <div class="card-header ">
-            <h3 class="card-title">
-              <strong>Kolom {{ $kolom }}</strong>
-            </h3>
-            <div class="card-tools" wire:ignore>
-              Waktu Tersisa: <label id="countdown"></label>
-            </div>
-          </div>
-          <div class="card-body">
-            <table class="table table-bordered">
-              <tr>
-                <td colspan="4">
-                  <strong>Soal:</strong>
-                </td>
-              <tr>
-              <tr>
-                <td class="text-center">
-                  <h2>{{ $tampil->ruangKerjaMateriTiga->a }}</h2>
-                </td>
-                <td class="text-center">
-                  <h2>{{ $tampil->ruangKerjaMateriTiga->b }}</h2>
-                </td>
-                <td class="text-center">
-                  <h2>{{ $tampil->ruangKerjaMateriTiga->c }}</h2>
-                </td>
-                <td class="text-center">
-                  <h2>{{ $tampil->ruangKerjaMateriTiga->d }}</h2>
-                </td>
-              </tr>
-            </table>
-            <table class="table table-borderless">
-              <tr>
-                <td colspan="5">
-                  <strong>Jawaban:</strong>
-                </td>
-              <tr>
-              </tr>
-              @php
-                $jawaban = json_decode($tampil->ruangKerjaMateriTiga->soal);
-              @endphp
-              @foreach ($jawaban as $index => $row)
-                <td class="text-center">
-                  <button class="btn btn-success" style="width: 100%" wire:click="submit({{ $index }})">
-                    <h4>{{ $row }}</h4>
-                  </button><br>
-                  @switch($index)
-                    @case(0)
-                      {{ 'a' }}
-                    @break
-
-                    @case(1)
-                      {{ 'b' }}
-                    @break
-
-                    @case(2)
-                      {{ 'c' }}
-                    @break
-
-                    @case(3)
-                      {{ 'd' }}
-                    @break
-
-                    @case(4)
-                      {{ 'e' }}
-                    @break
-                  @endswitch
-                </td>
-              @endforeach
-              </tr>
-            </table>
-          </div>
-        </div>
-      @else
-        <h5 class="text-danger">Waktu Anda Sudah Habis</h5><br>
-        <a href="/materitiga/{{ $key }}/hasil" class="btn btn-primary">Klik Hasil</a>
-      @endif
-    </div>
-  </section>
-  {{-- @push('scripts')
+  @push('scripts')
     @if ($waktu > 0)
       <script type="text/javascript"></script>
     @endif
@@ -108,18 +154,18 @@
         $('input[name="jawaban"]').attr('checked', false);
       });
 
-      window.onbeforeunload = function(e) {
-        window.livewire.emit('waktu');
-        if (selesai == false) {
-          e = e || window.event;
+      //   window.onbeforeunload = function(e) {
+      //     window.livewire.emit('waktu');
+      //     if (selesai == false) {
+      //       e = e || window.event;
 
-          if (e) {
-            e.returnValue = 'Sure?';
-          }
+      //       if (e) {
+      //         e.returnValue = 'Sure?';
+      //       }
 
-          return 'Sure?';
-        }
-      };
+      //       return 'Sure?';
+      //     }
+      //   };
 
       function submit() {
         var jawaban = $('input[name="jawaban"]:checked').val();
@@ -149,18 +195,20 @@
             clearInterval(timer);
             return;
           }
+          window.livewire.emit('waktu');
 
           var days = Math.floor(distance / _day);
           var hours = Math.floor((distance % _day) / _hour);
           var minutes = Math.floor((distance % _hour) / _minute);
           var seconds = Math.floor((distance % _minute) / _second);
 
-          document.getElementById('countdown').innerHTML = hours + ' jam ';
-          document.getElementById('countdown').innerHTML += minutes + ' menit ';
-          document.getElementById('countdown').innerHTML += seconds + ' detik ';
+
+          document.getElementById('countdown').innerHTML = (hours > 10 ? hours : '0' + hours) + ':';
+          document.getElementById('countdown').innerHTML += (minutes > 10 ? minutes : '0' + minutes) + ':';
+          document.getElementById('countdown').innerHTML += (seconds > 10 ? seconds : '0' + seconds);
         }
         timer = setInterval(showRemaining, 1000);
       }
     </script>
-  @endpush --}}
+  @endpush
 </div>
