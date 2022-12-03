@@ -14,12 +14,11 @@ class Intro extends Component
 {
   public $key;
 
-  public function mount($key)
+  public function mount()
   {
     if (RuangKerjaPesertaWaktu::where('materi', 'like', '3%')->count() > 0) {
       return redirect('/materitiga/' . $this->key . '/kolom/1');
     }
-    $this->key = $key;
   }
 
   public function mulai()

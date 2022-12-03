@@ -3,58 +3,57 @@
     <br>
     <div class="container">
       <div class="row">
-        @if ($waktu > 0)
-          <div class="col-xl-9">
-            <div class="card">
-              <div class="card-body">
-                <h4>Materi Satu</h4>
-              </div>
+        <div class="col-xl-9">
+          <div class="card">
+            <div class="card-body">
+              <h4>Materi Satu</h4>
             </div>
-            <div class="card">
-              <div class="card-body">
-                <table class="table table-borderless">
-                  <tr>
-                    <td colspan="5" style="height: 430px">
-                      <strong>Soal:</strong><br>
-                      @php
-                        echo $tampil->ruangKerjaMateriSatu->soal;
-                      @endphp
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              <div class="card-footer">
-                <a class="btn {{ $tampil->jawaban == 'A' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
-                  wire:click="submit('A')">Jawab A</a>&nbsp;&nbsp;
-                <a class="btn {{ $tampil->jawaban == 'B' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
-                  wire:click="submit('B')">Jawab B</a>&nbsp;&nbsp;
-                <a class="btn {{ $tampil->jawaban == 'C' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
-                  wire:click="submit('C')">Jawab C</a>&nbsp;&nbsp;
-                <a class="btn {{ $tampil->jawaban == 'D' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
-                  wire:click="submit('D')">Jawab D</a>&nbsp;&nbsp;
-                <a class="btn {{ $tampil->jawaban == 'E' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
-                  wire:click="submit('E')">Jawab E</a>
-              </div>
-            </div>
-            @if ($dataRuangKerjaPesertaJawaban->count() == $dataRuangKerjaPesertaJawaban->whereNotNull('jawaban')->count())
-              <div class="alert alert-warning">
-                Semua soal sudah terjawab, <a href="javascript:;" wire:click="waktu(true)">klik disini</a>
-                untuk
-                menyelesaikan tes dan melihat hasil.
-              </div>
-            @endif
           </div>
-          <div class="col-xl-3">
-            <div class="text-center" wire:ignore>
-              <small>Sisa Waktu</small>
-              <h1><label id="countdown" class="text-blue">00:00:00</label></h1>
+          <div class="card">
+            <div class="card-body">
+              <table class="table table-borderless">
+                <tr>
+                  <td colspan="5">
+                    <strong>Soal:</strong><br>
+                    @php
+                      echo $tampil->ruangKerjaMateriSatu->soal;
+                    @endphp
+                  </td>
+                </tr>
+              </table>
             </div>
-            <div class="alert alert-primary">
-              <div class="row">
-                @foreach ($dataRuangKerjaPesertaJawaban as $index => $row)
-                  <div class="col-3 mb-2 ">
-                    <button wire:click="$set('soal',{{ $row->getKey() }})"
-                      class="btn-xs btn @php if ($row->jawaban != null) {
+            <div class="card-footer">
+              <a class="btn {{ $tampil->jawaban == 'A' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
+                wire:click="submit('A')">Jawab A</a>&nbsp;&nbsp;
+              <a class="btn {{ $tampil->jawaban == 'B' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
+                wire:click="submit('B')">Jawab B</a>&nbsp;&nbsp;
+              <a class="btn {{ $tampil->jawaban == 'C' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
+                wire:click="submit('C')">Jawab C</a>&nbsp;&nbsp;
+              <a class="btn {{ $tampil->jawaban == 'D' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
+                wire:click="submit('D')">Jawab D</a>&nbsp;&nbsp;
+              <a class="btn {{ $tampil->jawaban == 'E' ? 'btn-danger' : 'btn-success' }}  mt-2" href="javascript:;"
+                wire:click="submit('E')">Jawab E</a>
+            </div>
+          </div>
+          @if ($dataRuangKerjaPesertaJawaban->count() == $dataRuangKerjaPesertaJawaban->whereNotNull('jawaban')->count())
+            <div class="alert alert-warning">
+              Semua soal sudah terjawab, <a href="javascript:;" wire:click="waktu(true)">klik disini</a>
+              untuk
+              menyelesaikan tes dan melihat hasil.
+            </div>
+          @endif
+        </div>
+        <div class="col-xl-3">
+          <div class="text-center" wire:ignore>
+            <small>Sisa Waktu</small>
+            <h1><label id="countdown" class="text-blue">00:00:00</label></h1>
+          </div>
+          <div class="alert alert-primary">
+            <div class="row">
+              @foreach ($dataRuangKerjaPesertaJawaban as $index => $row)
+                <div class="col-3 mb-2 ">
+                  <button wire:click="$set('soal',{{ $row->getKey() }})"
+                    class="btn-xs btn @php if ($row->jawaban != null) {
                                                 if ($soal == $row->getKey()){
                                                     echo 'btn-success';
                                                 } else { 
@@ -67,39 +66,20 @@
                                                     echo'btn-secondary';
                                                 }
                                             } @endphp width-full"
-                      style="width:100%">{{ ++$index }} {{ strtoupper($row->jawaban) }}</button>
-                  </div>
-                @endforeach
-              </div>
+                    style="width:100%">{{ ++$index }} {{ strtoupper($row->jawaban) }}</button>
+                </div>
+              @endforeach
             </div>
           </div>
-        @else
-          <div class="col-lg-12 text-center">
-            <h5 class="text-danger">Waktu Anda Sudah Habis</h5><br>
-            <a href="/materisatu/{{ $key }}/hasil" class="btn btn-primary">Klik Hasil</a>
-          </div>
-        @endif
+        </div>
       </div>
     </div>
   </div>
   @push('scripts')
-    @if ($waktu > 0)
-      <script type="text/javascript"></script>
-    @endif
-
     <script>
       var selesai = false
       var now = new Date('{{ $now }}');
-      Livewire.on('reinit', () => {
-        $('input[name="jawaban"]').attr('checked', false);
-      });
 
-      function submit() {
-        var jawaban = $('input[name="jawaban"]:checked').val();
-        if (jawaban) {
-          window.livewire.emit('submit', jawaban, now);
-        }
-      }
 
       CountDownTimer();
 

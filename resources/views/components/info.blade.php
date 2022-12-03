@@ -4,13 +4,13 @@
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <ul>
           @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
+            <li><small>{{ $error }}</small></li>
           @endforeach
         </ul>
       </div>
     @else
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ $error }}
+        <small>{{ $error }}</small>
       </div>
     @endif
   @endif
@@ -18,7 +18,7 @@
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <ul>
         @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
+          <li><small>{{ $error }}</small></li>
         @endforeach
       </ul>
     </div>

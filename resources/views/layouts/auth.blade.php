@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ config('app.name') }}</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/logo.png') }}">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,11 +22,11 @@
   <div class="login-box">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="/" class="h1">
-          {{ config('app.name') }}</a>
+        <a href="/">
+          <img src="{{ asset('dist/img/logo.png') }}" style="width:100px"></a>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg"><small>Masukkan No. Peserta dan Kata Sandi Anda</small></p>
         @livewire('login')
       </div>
       <div class="card-footer text-center">

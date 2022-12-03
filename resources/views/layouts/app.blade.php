@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ config('app.name') }}</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/logo.png') }}">
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
@@ -27,9 +28,9 @@
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
         <a href="/" class="navbar-brand">
-          <img src="{{ asset('dist/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-            style="opacity: .8">
-          <span class="brand-text font-weight-light"><strong>pintar</strong>psi.com</span>
+          <img src="{{ asset('dist/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image"
+            style="opacity: .8; height: 30px; ">
+          <span class="brand-text font-weight-light h4"><strong>pintar</strong>psi.com</span>
         </a>
 
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -99,9 +100,9 @@
     $(".btn-logout").on("click", function(e) {
       document.getElementById('logout-form').submit();
     });
-    // $(document).bind("contextmenu", function(e) {
-    //   return false;
-    // });
+    $(document).bind("contextmenu", function(e) {
+      return false;
+    });
   </script>
   @stack('scripts')
 </body>

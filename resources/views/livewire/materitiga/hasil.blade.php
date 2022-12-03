@@ -17,21 +17,29 @@
               @endfor
             </tr>
             <tr>
-              <th>JUMlAH BENAR</th>
+              <th>JUMLAH BENAR</th>
               @for ($i = 1; $i < 11; $i++)
                 <td> {{ $data->where('kolom', $i)->sum('nilai') }}</td>
               @endfor
             </tr>
             <tr>
-              <th>JUMlAH YANG DIKERJAKAN</th>
+              <th class="pt-0 pb-0">&nbsp;</th>
               @for ($i = 1; $i < 11; $i++)
-                <td> {{ $data->where('kolom', $i)->whereNotNull('jawaban')->count() }}</td>
+                <td class="pt-0 pb-0">
+                  <small>{{ $i == 1 ? '' : $data->where('kolom', $i)->sum('nilai') - $data->where('kolom', $i - 1)->sum('nilai') }}</small>
+                </td>
               @endfor
             </tr>
             <tr>
-              <th>JUMlAH SALAH</th>
+              <th>JUMLAH SALAH</th>
               @for ($i = 1; $i < 11; $i++)
-                <td> {{ $data->where('kolom', $i)->where('nilai', 0)->count() }}</td>
+                <td> {{ $data->where('kolom', $i)->whereNotNull('jawaban')->where('nilai', 0)->count() }}</td>
+              @endfor
+            </tr>
+            <tr>
+              <th>JUMLAH YANG DIKERJAKAN</th>
+              @for ($i = 1; $i < 11; $i++)
+                <td> {{ $data->where('kolom', $i)->whereNotNull('jawaban')->count() }}</td>
               @endfor
             </tr>
           </table>

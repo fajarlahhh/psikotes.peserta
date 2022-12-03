@@ -23,7 +23,7 @@ class Soal extends Component
     $data->save();
 
     if ($selesai == true) {
-      return redirect('/materitiga/' . $this->key . '/kolom/' . ($this->kolom + 1));
+      return redirect('/materitiga/' . $this->key . '/jeda/' . ($this->kolom + 1));
     }
   }
 
@@ -32,12 +32,12 @@ class Soal extends Component
     $this->key = $key;
     $this->kolom = $kolom;
 
-    if ($kolom >= 10) {
+    if ($kolom > 10) {
       return redirect('/materitiga/' . $this->key . '/hasil');
     }
 
     if (RuangKerjaPesertaWaktu::where('waktu', 0)->where('materi', '3' . $this->kolom)->count() > 0) {
-      return redirect('/materitiga/' . $this->key . '/kolom/' . ($this->kolom + 1));
+      return redirect('/materitiga/' . $this->key . '/jeda/' . ($this->kolom + 1));
     }
 
     $this->dataRuangKerja = RuangKerja::findOrFail($this->key);
@@ -45,7 +45,7 @@ class Soal extends Component
 
     $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereHas('ruangKerjaMateriTiga', fn($q) => $q->where('kolom', $this->kolom))->whereNotNull('ruang_kerja_materi_tiga_id')->get();
     if ($this->dataRuangKerjaPesertaJawaban->whereNull('jawaban')->count() == 0) {
-      return redirect('/materitiga/' . $this->key . '/kolom/' . ($this->kolom + 1));
+      return redirect('/materitiga/' . $this->key . '/jeda/' . ($this->kolom + 1));
     }
     $this->soal = $this->dataRuangKerjaPesertaJawaban->whereNull('jawaban')->first()->id;
     $this->now = now();
@@ -72,7 +72,7 @@ class Soal extends Component
         $this->soal++;
       } else {
         $this->waktu(true);
-        return redirect('/materitiga/' . $this->key . '/kolom/' . ($this->kolom + 1));
+        return redirect('/materitiga/' . $this->key . '/jeda/' . ($this->kolom + 1));
       }
     }
   }
