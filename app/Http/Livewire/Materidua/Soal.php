@@ -98,6 +98,7 @@ class Soal extends Component
       if ($this->soal < $this->dataRuangKerjaPesertaJawaban->sortByDesc('id')->first()->id) {
         $this->soal++;
       } else {
+        $this->waktu(true);
         return redirect('/materidua/' . $this->key . '/hasil');
       }
     }
