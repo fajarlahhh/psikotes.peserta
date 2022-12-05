@@ -27,8 +27,7 @@
           </table>
           <br>
           <div class="text-center">
-            <a href="javascript:;"
-              wire:click="selanjutnya({{ $dataJawabanMateriSatu->first()->ruangKerjaMateriSatu->ruang_kerja_id }})"
+            <a href="javascript:;" wire:click="selanjutnya({{ $key }})"
               class="btn btn-primary text-center">Lanjut ke materi selanjutnya</a>
           </div>
         </div>
