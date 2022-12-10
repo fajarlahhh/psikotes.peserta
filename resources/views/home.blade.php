@@ -5,12 +5,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>HeroBiz Bootstrap Template - Home 2</title>
+  <title>pintarpsi.com</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/landingpage/img/favicon.png" rel="icon">
+  <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/logo.png') }}">
   <link href="/landingpage/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
