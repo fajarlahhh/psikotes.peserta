@@ -24,7 +24,13 @@ class Soal extends Component
     $data->save();
 
     if ($selesai == true) {
-      return redirect('/materisatu/' . $this->key . '/hasil');
+      if ($this->dataRuangKerja->materi_dua_id) {
+        return redirect('/materidua/' . $this->key);
+      }
+      if ($this->dataRuangKerja->materi_tiga_id) {
+        return redirect('/materitiga/' . $this->key);
+      }
+      return redirect('/dashboard');
     }
   }
 
@@ -39,7 +45,7 @@ class Soal extends Component
     $this->dataRuangKerja = RuangKerja::findOrFail($this->key);
     $this->waktu = RuangKerjaPesertaWaktu::where('materi', 1)->count() == 0 ? $this->dataRuangKerja->waktu_materi_satu : RuangKerjaPesertaWaktu::where('materi', 1)->orderBy('waktu')->first()->waktu;
 
-    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_satu_id')->get();
+    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_satu_id')->orderBy('id')->get();
     $this->soal = $this->dataRuangKerjaPesertaJawaban->first()->id;
     $this->now = now();
     $this->end = Carbon::now()->addSeconds($this->waktu);
@@ -57,7 +63,7 @@ class Soal extends Component
         RuangKerjaPesertaJawaban::find($this->soal)->update([
           'ruang_kerja_peserta_id' => auth()->id(),
           'jawaban' => $jawaban,
-          'nilai' => ($jawaban == $this->tampil->ruangKerjaMateriSatu->kunci ? 1 : 0),
+          'nilai' => ($jawaban == trim($this->tampil->ruangKerjaMateriSatu->kunci) ? 1 : 0),
         ]);
         $this->waktu();
       });

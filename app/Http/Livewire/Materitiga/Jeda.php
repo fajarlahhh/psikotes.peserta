@@ -13,7 +13,7 @@ class Jeda extends Component
   public function mount($key, $kolom)
   {
     if ($kolom > 10) {
-      return redirect('/materitiga/' . $this->key . '/hasil');
+      return redirect('/dashboard');
     }
     if (RuangKerjaPesertaWaktu::where('waktu', 0)->where('materi', '3' . $this->kolom)->count() > 0) {
       return redirect('/materitiga/' . $this->key . '/jeda/' . ($this->kolom + 1));

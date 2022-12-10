@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+Route::view('/', 'home');
 Route::middleware(['auth'])->group(function () {
-  Route::get('/', \App\Http\Livewire\Home::class);
+  Route::get('/dashboard', \App\Http\Livewire\Dashboard::class);
   Route::prefix('/materisatu')->group(function () {
     Route::get('/{key}', \App\Http\Livewire\Materisatu\Intro::class);
     Route::get('/{key}/soal', \App\Http\Livewire\Materisatu\Soal::class);

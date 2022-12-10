@@ -1,26 +1,21 @@
 <div>
   @if (Session::has('danger'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <div class="alert alert-danger fade show" role="alert">
       <small>{!! Session::get('danger') !!}</small>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
   @endif
   @if (Session::has('warning'))
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning fade show" role="alert">
       <small>{!! Session::get('danger') !!}</small>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   @endif
   @if (Session::has('info'))
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <div class="alert alert-info fade show" role="alert">
       <small>{!! Session::get('danger') !!}</small>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   @endif
   @if (Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success fade show" role="alert">
       <small>{!! Session::get('danger') !!}</small>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   @endif
 </div>

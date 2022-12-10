@@ -24,7 +24,10 @@ class Soal extends Component
     $data->save();
 
     if ($selesai == true) {
-      return redirect('/materidua/' . $this->key . '/hasil');
+      if ($this->dataRuangKerja->materi_tiga_id) {
+        return redirect('/materitiga/' . $this->key);
+      }
+      return redirect('/dashboard');
     }
   }
 
@@ -53,7 +56,7 @@ class Soal extends Component
   public function submit($jawaban)
   {
     $nilai = 0;
-    if ($this->tampil->ruangKerjaMateriDua->kunci == "+") {
+    if (trim($this->tampil->ruangKerjaMateriDua->kunci) == "+") {
       switch ($jawaban) {
         case 'SS':
           $nilai = 4;

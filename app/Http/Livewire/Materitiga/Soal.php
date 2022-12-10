@@ -33,7 +33,7 @@ class Soal extends Component
     $this->kolom = $kolom;
 
     if ($kolom > 10) {
-      return redirect('/materitiga/' . $this->key . '/hasil');
+      return redirect('/dashboard');
     }
 
     if (RuangKerjaPesertaWaktu::where('waktu', 0)->where('materi', '3' . $this->kolom)->count() > 0) {
@@ -64,7 +64,7 @@ class Soal extends Component
         RuangKerjaPesertaJawaban::find($this->soal)->update([
           'ruang_kerja_peserta_id' => auth()->id(),
           'jawaban' => $jawaban,
-          'nilai' => ($jawaban == $this->tampil->ruangKerjaMateriTiga->kunci ? 1 : 0),
+          'nilai' => ($jawaban == trim($this->tampil->ruangKerjaMateriTiga->kunci) ? 1 : 0),
         ]);
         $this->waktu();
       });

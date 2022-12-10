@@ -17,7 +17,7 @@ class Hasil extends Component
     if ($ruangKerja->materi_tiga_id) {
       return redirect('/materitiga/' . $ruangKerja->getKey());
     }
-    return redirect('/');
+    return redirect('/dashboard');
   }
 
   public function mount()

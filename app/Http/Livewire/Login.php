@@ -18,7 +18,7 @@ class Login extends Component
 
     if (Auth::attempt(['nomor' => $this->noPeserta, 'password' => $this->kataSandi], $this->remember)) {
       Auth::logoutOtherDevices($this->kataSandi, 'kata_sandi');
-      redirect('/');
+      redirect('/dashboard');
     } else {
       session()->flash('danger', 'Kredensial tidak valid');
     }
