@@ -34,15 +34,18 @@ class Soal extends Component
   public function mount($key)
   {
     $this->key = $key;
+    $this->dataRuangKerja = RuangKerja::findOrFail($this->key);
 
     if (RuangKerjaPesertaWaktu::where('waktu', 0)->where('materi', 2)->count() > 0) {
-      return redirect('/materidua/' . $this->key . '/hasil');
+      if ($this->dataRuangKerja->materi_tiga_id) {
+        return redirect('/materitiga/' . $this->key);
+      }
+      return redirect('/dashboard');
     }
 
-    $this->dataRuangKerja = RuangKerja::findOrFail($this->key);
     $this->waktu = RuangKerjaPesertaWaktu::where('materi', 2)->count() == 0 ? $this->dataRuangKerja->waktu_materi_dua : RuangKerjaPesertaWaktu::where('materi', 2)->orderBy('waktu')->first()->waktu;
 
-    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_dua_id')->get();
+    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_dua_id')->orderBy('id')->get();
     $this->soal = $this->dataRuangKerjaPesertaJawaban->whereNull('jawaban')->first()->id;
     $this->now = now();
     $this->end = Carbon::now()->addSeconds($this->waktu);
@@ -102,7 +105,6 @@ class Soal extends Component
         $this->soal++;
       } else {
         $this->waktu(true);
-        return redirect('/materidua/' . $this->key . '/hasil');
       }
     }
   }
@@ -110,7 +112,7 @@ class Soal extends Component
   public function render()
   {
     $this->emit('reinit');
-    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_dua_id')->get();
+    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_dua_id')->orderBy('id')->get();
     $this->tampil = RuangKerjaPesertaJawaban::findOrFail($this->soal);
     return view('livewire.materidua.soal');
   }

@@ -27,7 +27,7 @@
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
-        <a href="/" class="navbar-brand">
+        <a href="/dashboard" class="navbar-brand">
           <img src="{{ asset('dist/img/logo.png') }}" alt="AdminLTE Logo" class="brand-image"
             style="opacity: .8; height: 30px; ">
           <span class="brand-text font-weight-light h4"><strong>pintar</strong>psi.com</span>

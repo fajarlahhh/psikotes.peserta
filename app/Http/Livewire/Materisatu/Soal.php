@@ -37,12 +37,18 @@ class Soal extends Component
   public function mount($key)
   {
     $this->key = $key;
+    $this->dataRuangKerja = RuangKerja::findOrFail($this->key);
 
     if (RuangKerjaPesertaWaktu::where('waktu', 0)->where('materi', 1)->count() > 0) {
-      return redirect('/materisatu/' . $this->key . '/hasil');
+      if ($this->dataRuangKerja->materi_dua_id) {
+        return redirect('/materidua/' . $this->key);
+      }
+      if ($this->dataRuangKerja->materi_tiga_id) {
+        return redirect('/materitiga/' . $this->key);
+      }
+      return redirect('/dashboard');
     }
 
-    $this->dataRuangKerja = RuangKerja::findOrFail($this->key);
     $this->waktu = RuangKerjaPesertaWaktu::where('materi', 1)->count() == 0 ? $this->dataRuangKerja->waktu_materi_satu : RuangKerjaPesertaWaktu::where('materi', 1)->orderBy('waktu')->first()->waktu;
 
     $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_satu_id')->orderBy('id')->get();
@@ -76,7 +82,7 @@ class Soal extends Component
   public function render()
   {
     $this->emit('reinit');
-    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::all();
+    $this->dataRuangKerjaPesertaJawaban = RuangKerjaPesertaJawaban::whereNotNull('ruang_kerja_materi_satu_id')->orderBy('id')->get();
     $this->tampil = RuangKerjaPesertaJawaban::findOrFail($this->soal);
     return view('livewire.materisatu.soal');
   }
